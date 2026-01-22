@@ -10,6 +10,7 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Mvc\Url as UrlResolver;
+use Phalcon\Mvc\Router;
 
 /**
  * Shared configuration service
@@ -119,4 +120,9 @@ $di->setShared('session', function () {
     $session->start();
 
     return $session;
+});
+$di->setShared('router', function () {
+
+    return require APP_PATH . '/config/router.php';
+
 });
