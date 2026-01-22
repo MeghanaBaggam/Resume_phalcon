@@ -30,6 +30,7 @@ return new Config([
         'pluginsDir'     => APP_PATH . '/plugins/',
         'libraryDir'     => APP_PATH . '/library/',
         'cacheDir'       => BASE_PATH . '/cache/',
+        'seedersDir'     => APP_PATH . '/seeders/',
         'baseUri'        => '/',
     ]
 ]);

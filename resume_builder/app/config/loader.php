@@ -9,6 +9,7 @@ $loader->setNamespaces([
     'App\Models'      => $config->application->modelsDir,
     'App\Services'    => $config->application->servicesDir,
     'App\Utils'       => $config->application->utilsDir,
+    'App\Seeders'     => $config->application->seedersDir,
 ]);
 
 $loader->register();

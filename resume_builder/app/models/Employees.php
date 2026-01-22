@@ -15,12 +15,6 @@ class Employees extends BaseModel
      *
      * @var string
      */
-    public $employee_id;
-
-    /**
-     *
-     * @var string
-     */
     public $first_name;
 
     /**
