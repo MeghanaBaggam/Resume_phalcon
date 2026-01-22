@@ -1,4 +1,6 @@
 <?php
+namespace App\Models;
+use App\Models\BaseModel;
 
 class Educations extends BaseModel
 {
