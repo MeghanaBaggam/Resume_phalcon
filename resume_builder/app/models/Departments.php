@@ -35,6 +35,16 @@ class Departments extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("departments");
     }
+    public function employees(){
+        return $this->hasMany(
+            'department_id',
+            Employees::class,
+            'department_id',
+            [
+                'alias'=>'department',
+            ]
+            );
+    }
 
     /**
      * Allows to query a set of records that match the specified conditions

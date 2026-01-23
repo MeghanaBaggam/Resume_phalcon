@@ -27,6 +27,6 @@ class EmployeeSeeder
             
         }
 
-        echo "Done";
+        echo "Employee SeedingDone";
     }
 }

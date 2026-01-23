@@ -65,7 +65,97 @@ class Resumes extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("resumes");
     }
+    public function employee(){
+        return $this->belongTo(
+            'employee_id',
+            Employees::class,
+            'employee_id',
+            [
+                'alias'=>'employee'
+            ]
+            );
+    }
+    public function educations(){
+    $this->hasManyToMany(
+        'resume_id',
+        ResumeEducationMappers::class,
+        'resume_id',
+        'education_id',
 
+        Educations::class,
+        'education_id',
+
+        [
+            'alias' => 'educations'
+        ]
+    );
+}
+    public function resumeCategoryMappers(){
+             return $this->hasMany(
+        'resume_id',
+        ResumeCategoryMappers::class,
+        'resume_id',
+        [
+            'alias'=>'resumeCategoryMappers'
+        ]
+         );
+    }
+    public function resumeDomainMappers(){
+         return $this->hasMany(
+        'resume_id',
+        ResumeDomainMappers::class,
+        'resume_id',
+        [
+            'alias'=>'resumeDomainMappers'
+        ]
+        );
+    }
+    public function categories(){
+        return $this->hasManyToMany(
+        'resume_id',
+        ResumeCategoryMappers::class,
+        'resume_id',
+        'skill_category_id',
+        SkillCategories::class,
+        'skill_category_id',
+        [
+            'alias'=>'categories'
+        ]
+        );
+    }
+    public function domains(){
+        return $this->hasManyToMany(
+        'resume_id',
+        ResumeDomainMappers::class,
+        'resume_id',
+        'project_domain_id',
+        ProjectDomains::class,
+        'project_domain_id',
+        [
+            'alias'=>'domains'
+        ]
+        );
+}
+  public function createdBy(){
+    return $this->belongsTo(
+        'created_by',
+        User::class,
+        'user_id',
+        [
+            'alias'=>'createdBy'
+        ]
+        );
+}
+   public function updatedBy(){
+    return $this->belongsTo(
+        'updated_by',
+        User::class,
+        'user_id',
+        [
+            'alias'=>'updatedBy'
+        ]
+        );
+   }
     /**
      * Allows to query a set of records that match the specified conditions
      *

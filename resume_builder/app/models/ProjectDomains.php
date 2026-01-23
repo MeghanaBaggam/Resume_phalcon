@@ -35,6 +35,15 @@ class ProjectDomains extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("project_domains");
     }
+    public function projects(){
+        return $this->hasMany(
+            'project_domain_id',
+            Projects::class,
+            'project_domain_id',[
+                'alias'=>'project'
+            ]
+        );
+    }
 
     /**
      * Allows to query a set of records that match the specified conditions

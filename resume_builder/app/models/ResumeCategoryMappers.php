@@ -41,6 +41,38 @@ class ResumeCategoryMappers extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("resume_category_mappers");
     }
+    public function resume(){
+        return $this->belongsTo(
+            'resume_id',
+            Resumes::class,
+            'resume_id',[
+                'alias'=>'resumes',
+            ]
+
+            );
+    }
+  public function category(){
+    return $this->belongsTo(
+        'skill_category_id',
+        SkillCategories::class,
+        'skill_category_id',[
+            'alias'=>'skill',
+        ]
+        );
+  }
+   public function skills(){
+        return $this->hasManyToMany(
+            'resume_category_mapper_id',
+            ResumeCategorySkillMappers::class,
+            'resume_category_mapper_id',
+            'skill_id',
+           Skills::class,
+           'skill_category_id',
+           [
+            'alias'=>'skills'
+           ]
+           );
+    }
 
     /**
      * Allows to query a set of records that match the specified conditions

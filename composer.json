@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "phalcon/devtools": "^5.0@dev"
+    },
+    "require": {
+        "fakerphp/faker": "^1.24"
     }
 }

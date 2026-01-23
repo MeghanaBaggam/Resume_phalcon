@@ -41,6 +41,17 @@ class Skills extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("skills");
     }
+    public function category(){
+        return $this->belongsTo(
+            'skill_category_id',
+            SkillCategories::class,
+            'skill_category_id',
+            [
+                'alias'=>'skill'
+            ]
+            );
+    }
+
 
     /**
      * Allows to query a set of records that match the specified conditions

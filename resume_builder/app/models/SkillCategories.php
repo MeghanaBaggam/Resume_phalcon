@@ -36,6 +36,17 @@ class SkillCategories extends BaseModel
         $this->setSource("skill_categories");
     }
 
+    public function skills(){
+        return $this->hasMany(
+            'skill_category_id',
+            Skills::class,
+            'skill_category_id',
+            [
+                'alias'=>'skill_category'
+            ]
+            );
+    }
+
     /**
      * Allows to query a set of records that match the specified conditions
      *

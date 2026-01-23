@@ -68,6 +68,17 @@ class Educations extends BaseModel
         $this->setSource("educations");
     }
 
+    public function employee(){
+        return $this->belongsTo(
+            'employee_id',
+            Employees::class,
+            'employee_id',
+            [
+                'alias'=>'employee'
+            ]
+            );
+    }
+
     /**
      * Allows to query a set of records that match the specified conditions
      *

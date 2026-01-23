@@ -42,6 +42,39 @@ class ResumeDomainMappers extends BaseModel
         $this->setSource("resume_domain_mappers");
     }
 
+    public function resume(){
+        return $this->belongsTo(
+            'resume_id',
+            Resumes::class,
+            'resume_id',
+            [
+                'alias'=>'resumes'
+            ]
+            );
+    }
+    public function domain(){
+        return $this->belongsTo(
+            'project_domain_id',
+            ProjectDomains::class,
+            'project_domain_id',
+            [
+                'alias'=>'project',
+            ]
+            );
+    }
+    public function projects(){
+        return $this->hasManyToMany(
+            'resume_domain_mapper_id',
+            ResumeDomainProjectMappers::class,
+            'resume_domain_mapper_id',
+            'project_id',
+            Projects::class,
+            'project_domain_id',[
+                'alias'=>'skills'
+            ]
+            );
+    }
+
     /**
      * Allows to query a set of records that match the specified conditions
      *

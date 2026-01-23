@@ -1,124 +1,116 @@
 <?php
+
 namespace App\Models;
-use App\Models\BaseModel;
+
+use Phalcon\Mvc\Model;
 
 class Employees extends BaseModel
 {
-
-    /**
-     *
-     * @var integer
-     */
     public $id;
-
-    /**
-     *
-     * @var string
-     */
+    public $employee_id;
     public $first_name;
-
-    /**
-     *
-     * @var string
-     */
     public $last_name;
-
-    /**
-     *
-     * @var string
-     */
     public $email;
-
-    /**
-     *
-     * @var integer
-     */
     public $department_id;
-
-    /**
-     *
-     * @var string
-     */
     public $location;
-
-    /**
-     *
-     * @var string
-     */
     public $date_of_joining;
-
-    /**
-     *
-     * @var string
-     */
     public $phone_number;
-
-    /**
-     *
-     * @var string
-     */
     public $work_station;
-
-    /**
-     *
-     * @var string
-     */
     public $business_unit;
-
-    /**
-     *
-     * @var string
-     */
     public $reporting_to;
-
-    /**
-     *
-     * @var string
-     */
+    public $role_id;
     public $picture;
-
-    /**
-     *
-     * @var string
-     */
     public $created_at;
-
-    /**
-     *
-     * @var string
-     */
     public $updated_at;
 
-    
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
+        // Database
         $this->setSchema("resume_phalcon");
         $this->setSource("employees");
     }
 
+     public function educations(){
+       return $this->hasMany(
+            'employee_id',
+            Educations::class,
+            'employee_id',
+            [
+                'alias' => 'educations'
+            ]
+        );
+    }
+
+       public function resume(){
+        return $this->hasMany(
+            'employee_id',
+            Resumes::class,
+            'employee_id',
+            [
+                'alias' => 'resumes'
+            ]
+        );
+    }
+
+        // Employee -> Role (belongsTo)
+        // $this->belongsTo(
+        //     'role_id',
+        //     Roles::class,
+        //     'id',
+        //     [
+        //         'alias' => 'role'
+        //     ]
+        // );
+      public function user(){ 
+       return $this->belongsTo(
+            'employee_id',
+            Users::class,
+            'user_id',
+            [
+                'alias' => 'user'
+            ]
+        );
+    }
+
+       public function manager(){
+        return
+        $this->belongsTo(
+            'reporting_to',
+            Employees::class,
+            'employee_id',
+            [
+                'alias' => 'manager'
+            ]
+        );
+    }
+       public function department(){
+        return
+        $this->belongsTo(
+            'department_id',
+            Departments::class,
+            'department_id',
+            [
+                'alias' => 'department'
+            ]
+        );
+    }
+
     /**
-     * Allows to query a set of records that match the specified conditions
-     *
-     * @param mixed $parameters
-     * @return Employees[]|Employees|\Phalcon\Mvc\Model\ResultSetInterface
+     * Find records
      */
-    public static function find($parameters = null): \Phalcon\Mvc\Model\ResultsetInterface
+    public static function find($parameters = null)
     {
         return parent::find($parameters);
     }
 
     /**
-     * Allows to query the first record that match the specified conditions
-     *
-     * @param mixed $parameters
-     * @return Employees|\Phalcon\Mvc\Model\ResultInterface|\Phalcon\Mvc\ModelInterface|null
+     * Find first record
      */
-    public static function findFirst($parameters = null): ?\Phalcon\Mvc\ModelInterface
+    public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
     }
-
 }

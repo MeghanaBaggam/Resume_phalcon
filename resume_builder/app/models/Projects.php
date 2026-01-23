@@ -54,6 +54,16 @@ class Projects extends BaseModel
         $this->setSource("projects");
     }
 
+    public function projectDomain(){
+            return $this->belongTo(
+                'project_domain_id',
+                ProjectDomains::class,
+                'project_domain_id',
+                [
+                    'alias'=>'project_domain'
+                ]
+                );
+    }
     /**
      * Allows to query a set of records that match the specified conditions
      *

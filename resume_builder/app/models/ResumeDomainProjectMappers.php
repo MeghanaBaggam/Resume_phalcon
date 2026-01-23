@@ -41,6 +41,7 @@ class ResumeDomainProjectMappers extends BaseModel
         $this->setSchema("resume_phalcon");
         $this->setSource("resume_domain_project_mappers");
     }
+    
 
     /**
      * Allows to query a set of records that match the specified conditions
